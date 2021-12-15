@@ -1,0 +1,66 @@
+﻿@model TraSuaWeb.Models.GioiThieu
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Styles{
+    <link href="~/Admin/assets/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Admin/assets/summernote/summernote.css" rel="stylesheet" />
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="GioiThieux" asp-action="index">Quản lý tin tức</a>
+            <span class="breadcrumb-item active">Thêm tin tức</span>
+        </nav>
+    </div>
+</div>
+<form asp-area="Admin" asp-controller="GioiThieux" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Tiêu đề</label>
+                        <input type="text" class="form-control" asp-for="TieuDe">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Anh" class="control-label">Ảnh Tin Tức</label>
+                        <input type="file" name="fAnhGt" id="fAnhGt" class="form-control" />
+                        <span asp-validation-for="Anh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="summernote" asp-for="MoTa"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="lưu" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/js/pages/e-commerce-product-edit.js"></script>
+
+    <script src="~/Admin/assets/summernote/summernote-bs4.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                macHeight: null,
+                focus: true
+            });
+        });
+    </script>
+}

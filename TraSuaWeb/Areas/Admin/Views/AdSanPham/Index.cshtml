@@ -1,0 +1,128 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<TraSuaWeb.Models.SanPham>
+
+@{ int CurrenPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách sản phẩm" + CurrenPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; }
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Danh sách sản phẩm : page @CurrenPage</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="input-affix m-v-10">
+                                    <i class="prefix-icon anticon anticon-search opacity-04"></i>
+                                    <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Search Project">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-right">
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdSanPham" asp-action="Create"> <i class="anticon anticon-plus-circle m-r-5"></i>Thêm mới</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Anh san pham</th>
+
+                        <th>Mã loại</th>
+                        <th>Mã Size</th>
+                        <th>Gía</th>
+                        <th>Tình trạng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody id="records_table">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+        <tr role="row" class="odd">
+            <td>
+                @item.MaSp
+            </td>
+            <td class="sorting_1">
+                <h6 class="m-b-0 m-l-10">@item.TenSp</h6>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="~/images/@item.AnhSp" width="60px">
+                </div>
+            </td>
+            <td>@item.MaLoaiNavigation.TenLoai</td>
+            <td>@item.MaSizeNavigation.LoaiSize</td>
+            <td>@item.Gia.Value.ToString("#,##0") VND</td>
+            <td>
+                @if (item.TinhTrang)
+                {
+<div class="d-flex align-items-center">
+    <div class="badge badge-success badge-dot m-r-10"></div>
+    <div>còn</div>
+</div> }
+else
+{
+<div class="d-flex align-items-center">
+    <div class="badge badge-danger badge-dot m-r-10"></div>
+    <div>hết</div>
+</div>}
+
+            </td>
+            <td class="text-right">
+                <a asp-area="Admin" asp-controller="AdSanPham" asp-action="Edit" asp-route-id="@item.MaSp" class="btn btn-info m-r-5">Sửa</a>
+                <a asp-area="Admin" asp-controller="AdSanPham" asp-action="Details" asp-route-id="@item.MaSp" class="btn btn-warning m-r-5">Chi tiết</a>
+                <a asp-area="Admin" asp-controller="AdSanPham" asp-action="Delete" asp-route-id="@item.MaSp" class="btn btn-danger m-r-5">Xóa</a>
+            </td>
+        </tr>}
+                    }
+                </tbody>
+            </table>
+            <div aria-label="Page navigation example">
+                <ul class="pagination">
+                    <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdSanPham" asp-action="index" />
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#keyword").keyup(function () {
+                var strkeyword = $('#keyword').val();
+                $.ajax({
+                    url: '/Admin/Search/FindProduct',
+                    /*dataType: "json",*/
+                    type: "GET",
+                    data: { keyword: strkeyword },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,77 @@
+﻿@model TraSuaWeb.Models.HoaDon
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>HoaDon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaHd" />
+            <div class="form-group">
+                <label asp-for="MaKh" class="control-label"></label>
+                <select asp-for="MaKh" class="form-control" asp-items="ViewBag.MaKh"></select>
+                <span asp-validation-for="MaKh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThanhToan" class="control-label"></label>
+                <input asp-for="ThanhToan" class="form-control" />
+                <span asp-validation-for="ThanhToan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayDat" class="control-label"></label>
+                <input asp-for="NgayDat" class="form-control" />
+                <span asp-validation-for="NgayDat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaTu" class="control-label"></label>
+                <select asp-for="MaTu" class="form-control" asp-items="ViewBag.MaTu"></select>
+                <span asp-validation-for="MaTu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChiGiaoHang" class="control-label"></label>
+                <input asp-for="DiaChiGiaoHang" class="form-control" />
+                <span asp-validation-for="DiaChiGiaoHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TongTien" class="control-label"></label>
+                <input asp-for="TongTien" class="form-control" />
+                <span asp-validation-for="TongTien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Soluong" class="control-label"></label>
+                <input asp-for="Soluong" class="form-control" />
+                <span asp-validation-for="Soluong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HiperId" class="control-label"></label>
+                <select asp-for="HiperId" class="form-control" asp-items="ViewBag.HiperId"></select>
+                <span asp-validation-for="HiperId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.Id"></select>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

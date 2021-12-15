@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TraSuaWeb.Models.Role>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Danh sách vai trò</span>
+        </nav>
+    </div>
+</div>
+<div class="col-lg-12 text-right">
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Roles" asp-action="Create"> <i class="anticon anticon-plus-circle m-r-5"></i>Thêm mới</a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vai trò</th>
+                        <th>Mô tả</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td>
+                                    @item.RoleId
+                                </td>
+                                <td class="sorting_1">
+                                    <h6 class="m-b-0 m-l-10">@item.RoleName</h6>
+                                </td>
+                                <td>
+                                    <h6 class="m-b-0 m-l-10">@item.RoleDesciptions</h6>
+                                </td>                                                       
+                                <td >
+                                    <a asp-area="Admin" asp-controller="Roles" asp-action="Edit" asp-route-id="@item.RoleId" class="btn btn-info m-r-5">Sửa</a>
+                                    <a asp-area="Admin" asp-controller="Roles" asp-action="Details" asp-route-id="@item.RoleId" class="btn btn-warning m-r-5">Chi tiết</a>
+                                    <a asp-area="Admin" asp-controller="Roles" asp-action="Delete" asp-route-id="@item.RoleId" class="btn btn-danger m-r-5">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model List<SanPham>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="product-item-wrap row">
+        @foreach (var item in Model)
+        {
+            string url = $"/{item.TenSp}-{item.MaSp}.html";
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="product-item">
+                    <div class="product-img img-zoom-effect">
+                        <a href="@url">
+                            <img class="img-full" src="~/images/@item.AnhSp" alt="@item.TenSp">
+                        </a>
+                        <div  class="product-add-action">
+                            <ul>
+                                <li >
+                                    <a  href="cart.html" >
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <a class="product-name" href="@url">@item.TenSp</a>
+                        <div class="price-box pb-1">
+                            <span class="new-price">@item.Gia.Value.ToString("#,##0") VND</span>
+                        </div>
+                        <div class="rating-box">
+                            <ul>
+                                <li><i class="pe-7s-star"></i></li>
+                                <li><i class="pe-7s-star"></i></li>
+                                <li><i class="pe-7s-star"></i></li>
+                                <li><i class="pe-7s-star"></i></li>
+                                <li><i class="pe-7s-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+}

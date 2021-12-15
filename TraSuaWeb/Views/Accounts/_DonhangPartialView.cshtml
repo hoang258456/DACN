@@ -1,0 +1,33 @@
+﻿@model List<HoaDon>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <th>Ngày mua hàng</th>
+                    <th>Trạng Thái</th>
+                    <th>Tổng tiền</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><a class="account-order-id" href="javascript:void(0)">#@item.MaHd</a></td>
+                        <td>@item.NgayDat</td>
+                        <td>@item.IdNavigation.Mota</td>
+                        <td>@item.TongTien.Value.ToString("#,##0") VND</td>
+                        <td>
+                            <a href="javascript:void(0)" class="btn btn-secondary btn-primary-hover"><span>Xem đơn hàng</span></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>Chưa có đơn hàng</p>
+}

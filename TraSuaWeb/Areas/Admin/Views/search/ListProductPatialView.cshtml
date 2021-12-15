@@ -1,0 +1,42 @@
+﻿@model List<SanPham>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr role="row" class="odd">
+            <td>
+                @item.MaSp
+            </td>
+            <td class="sorting_1">
+                <h6 class="m-b-0 m-l-10">@item.TenSp</h6>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="~/images/@item.AnhSp" width="60px">
+                </div>
+            </td>
+            <td>@item.MaLoaiNavigation.TenLoai</td>
+            <td>@item.MaSizeNavigation.LoaiSize</td>
+            <td>@item.Gia.Value.ToString("#,##0") VND</td>
+            <td>
+                @if (item.TinhTrang)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>còn</div>
+                    </div> }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-danger badge-dot m-r-10"></div>
+                        <div>hết</div>
+                    </div>}
+
+            </td>
+            <td class="text-right">
+                <a asp-area="Admin" asp-controller="AdSanPham" asp-action="Edit" asp-route-id="@item.MaSp" class="btn btn-info m-r-5">Sửa</a>
+                <a asp-area="Admin" asp-controller="AdSanPham" asp-action="Details" asp-route-id="@item.MaSp" class="btn btn-warning m-r-5">Chi tiết</a>
+                <a asp-area="Admin" asp-controller="AdSanPham" asp-action="Delete" asp-route-id="@item.MaSp" class="btn btn-danger m-r-5">Xóa</a>
+            </td>
+        </tr>}
+}

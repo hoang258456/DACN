@@ -1,0 +1,50 @@
+﻿@model TraSuaWeb.ModelView.dangnhapViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="main-content">
+    <div class="login-register-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 pt-10 pt-lg-0">
+                    <form asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="login-form">
+                            <h4 class="login-title">Đăng Nhập</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Email</label>
+                                    <input type="email" asp-for="Email" placeholder="Địa chỉ Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Mật khẩu</label>
+                                    <input type="password" asp-for="Password" placeholder="Mật khẩu">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-custom-size lg-size btn-secondary btn-primary-hover rounded-0">Đăng nhập</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                @*<div class="col-lg-6 pt-10 pt-lg-0">
+                    <tr>
+                        <td>
+                            <input type="button" id="btnGoogleLogin"
+                                   value="Login with Google" class="btn btn-success" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="btnFaceloginLogin"
+                                   value="Login with Facebook" class="btn btn-success" />
+                        </td>
+                    </tr>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</main>

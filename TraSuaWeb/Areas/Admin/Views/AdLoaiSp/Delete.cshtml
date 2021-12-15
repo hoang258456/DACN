@@ -1,0 +1,57 @@
+﻿@model TraSuaWeb.Models.LoaiSp
+
+@{ ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; }
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdLoaisp" asp-action="index">Danh sách loại sản phẩm</a>
+            <span class="breadcrumb-item active">Xóa Loại sản phẩm</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm : @Model.TenLoai</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20 ">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td class="text-dark font-weight-semibold">
+                            @Model.MaLoai
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên loại sản phẩm:</td>
+                        <td>
+                            @Model.TenLoai
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ẢNH:</td>
+                        <div class="d-flex align-items-center">
+                            <img src="~/images/Anhloaisp/@Model.Anh" width="60px">
+                        </div>
+                    </tr>
+                    <tr>
+                        <td>Xác nhận xóa :</td>
+                        <td>
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="MaLoai" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaLoai">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

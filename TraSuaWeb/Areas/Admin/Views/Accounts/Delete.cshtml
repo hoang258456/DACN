@@ -1,0 +1,77 @@
+﻿@model TraSuaWeb.Models.Account
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Accounts" asp-action="index">Xóa tài khoản quản trị</a>
+            <span class="breadcrumb-item active">Thông tin sản phẩm</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm : @Model.FullName</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20 ">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td class="text-dark font-weight-semibold">
+                            @Model.AccountId
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Họ và tên:</td>
+                        <td>
+                            @Model.FullName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>
+                            @Model.Email
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td>
+                            @Model.Password
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vai trò:</td>
+                        <td>
+                            @Model.Role.RoleName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tình trạng:</td>
+                        <td>
+                            @Model.Active
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Xác nhận xóa :</td>
+                        <td>
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="AccountId" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AccountId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

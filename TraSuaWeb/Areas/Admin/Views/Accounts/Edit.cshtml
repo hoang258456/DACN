@@ -1,0 +1,63 @@
+﻿@model TraSuaWeb.Models.Account
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Accounts" asp-action="index">chỉnh sửa tài khoản quản trị</a>
+        </nav>
+    </div>
+</div>
+<form asp-area="Admin" asp-controller="AdSanpham" asp-action="Edit" asp-route-id="@Model.AccountId" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="AccountId" />
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Họ và tên</label>
+                        <input type="text" class="form-control" asp-for="FullName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productPrice">Email</label>
+                        <input type="text" class="form-control" asp-for="Email">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productPrice">Password</label>
+                        <input type="text" class="form-control" asp-for="Password">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productPrice">Số điện thoại</label>
+                        <input type="text" class="form-control" asp-for="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productCategory">Vai trò</label>
+                        <select asp-for="RoleId" class="custom-select" asp-items="ViewBag.RoleId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productStatus">Status</label>
+                        <div class="form-group d-flex align-items-center">
+                            <div class="switch m-r-10">
+                                <input type="checkbox" asp-for="Active" checked="">
+                                <label for="TinhTrang"></label>
+                            </div>
+                            <label>Checked</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

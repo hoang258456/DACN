@@ -1,0 +1,96 @@
+﻿@model TraSuaWeb.Models.SanPham
+
+@{ ViewData["Title"] = "Thông tin sản phẩm" + Model.TenSp;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; }
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdSanPham" asp-action="index">Danh sách sản phẩm</a>
+            <span class="breadcrumb-item active">Thông tin sản phẩm: @Model.TenSp</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm : @Model.TenSp</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20 ">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td class="text-dark font-weight-semibold">
+                            @Model.MaSp
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên sản phẩm:</td>
+                        <td>
+                            @Model.TenSp
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ảnh sản phẩm :</td>
+                        <td>
+                            <img width="200" height="200" src="~/images/@Model.AnhSp" alt="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái sản phẩm:</td>
+                        <td>
+                            @Model.TinhTrang
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái giảm giá:</td>
+                        <td>
+                            @Model.XacNhanGiam
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái ẩn hiện:</td>
+                        <td>
+                            @Model.AnHien
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gía :</td>
+                        <td>
+                            @Model.Gia.Value.ToString("#,##0") VND
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mã loại:</td>
+                        <td>
+                            @Model.MaLoaiNavigation.TenLoai
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mã size :</td>
+                        <td>
+                            @Model.MaSizeNavigation.LoaiSize
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày tạo</td>
+                        <td>
+                            @Model.NgayTao
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sửa</td>
+                        <td>
+                            @Model.NgaySua
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaSp">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

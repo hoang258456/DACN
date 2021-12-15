@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TraSuaWeb.Models.TuHang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdTuHang" asp-action="index">Danh sách size</a>
+        </nav>
+    </div>
+</div>
+<p>
+    <a asp-area="Admin" asp-controller="AdTuHang" asp-action="Create" class="btn btn-default m-r-5">Thêm mới</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên tủ</th>
+                <th scope="col">Tính trạng</th>
+                <th scope="col">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+            <tr>
+                <th scope="row">@item.MaTu</th>
+                <td>@item.TenTu</td>
+                <td>
+                    @if (item.TinhTrang)
+                    {
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-success badge-dot m-r-10"></div>
+                            <div>mở</div>
+                        </div> }
+                    else
+                    {
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-danger badge-dot m-r-10"></div>
+                            <div>khóa</div>
+                        </div>}
+
+                </td>
+                <td>
+                    <a asp-area="Admin" asp-controller="AdTuHang" asp-action="Edit" asp-route-id="@item.MaTu" class="btn btn-info m-r-5">Sửa</a>
+                    <a asp-area="Admin" asp-controller="AdTuHang" asp-action="Details" asp-route-id="@item.MaTu" class="btn btn-warning m-r-5">Chi tiết</a>
+                    <a asp-area="Admin" asp-controller="AAdTuHang" asp-action="Delete" asp-route-id="@item.MaTu" class="btn btn-danger m-r-5">Xóa</a>
+
+                </td>
+            </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>

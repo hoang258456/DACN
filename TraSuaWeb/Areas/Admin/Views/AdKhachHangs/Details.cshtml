@@ -1,0 +1,73 @@
+﻿@model TraSuaWeb.Models.KhachHang
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdKhachHangs" asp-action="index">Danh sách khách hàng</a>
+            <span class="breadcrumb-item active">Chi tiết khách hàng: @Model.TenKh</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm : @Model.TenKh</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20 ">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td class="text-dark font-weight-semibold">
+                            @Model.MaKh
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên sản phẩm:</td>
+                        <td>
+                            @Model.TenKh
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td>
+                            @Model.Email
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td>
+                            @Model.Password
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoai: </td>
+                        <td>
+                            @Model.Sðt
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ :</td>
+                        <td>
+                            @Model.DiaChi
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái tài khoản:</td>
+                        <td>
+                            @Model.Tinhtrang
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaKh">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

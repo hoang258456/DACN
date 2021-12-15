@@ -1,0 +1,83 @@
+﻿@model TraSuaWeb.Models.SanPham
+
+@{
+    ViewData["Title"] = "chỉnh sửa sản phẩm" + Model.TenSp;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdSanPham" asp-action="index">chỉnh sửa sản phẩm</a>
+        </nav>
+    </div>
+</div>
+<form asp-area="Admin" asp-controller="AdSanpham" asp-action="Edit" asp-route-id="@Model.MaSp" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="MaSp" />
+    <input type="hidden" asp-for="AnhSp" />
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Tên sản phẩm</label>
+                        <input type="text" class="form-control" asp-for="TenSp">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productPrice">Gía</label>
+                        <input type="text" class="form-control" asp-for="Gia">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productPrice">Gía</label>
+                        <input type="text" class="form-control" asp-for="GiaGiam">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productCategory">Mã loại</label>
+                        <select asp-for="MaLoai" class="custom-select" asp-items="ViewBag.MaLoai"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productCategory">Mã size</label>
+                        <select asp-for="MaSize" class="custom-select" asp-items="ViewBag.MaSize"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AnhSp" class="control-label">Hình ảnh</label>
+                        <input type="file" name="fAnhSp" id="fAnhSp" class="form-control" />
+                        <span asp-validation-for="AnhSp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productStatus">Status</label>
+                        <div class="form-group d-flex align-items-center">
+                            <div class="switch m-r-10">
+                                <input type="checkbox" asp-for="TinhTrang" >
+                                <label for="TinhTrang"></label>
+                            </div>
+                            <label>Checked</label>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <div class="switch m-r-10">
+                                <input type="checkbox" asp-for="XacNhanGiam" >
+                                <label for="XacNhanGiam"></label>
+                            </div>
+                            <label>Trạng thái giảm giá</label>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <div class="switch m-r-10">
+                                <input type="checkbox" asp-for="AnHien" >
+                                <label for="AnHien"></label>
+                            </div>
+                            <label>Trạng thái ẩn hiện</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

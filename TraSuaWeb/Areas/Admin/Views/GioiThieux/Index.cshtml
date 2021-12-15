@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TraSuaWeb.Models.GioiThieu>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="GioiThieux" asp-action="index">Quản lý tin tức</a>
+            <span class="breadcrumb-item active">Thêm tin tức</span>
+        </nav>
+    </div>
+</div>
+<div class="col-lg-12 text-right">
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="GioiThieux" asp-action="Create"> <i class="anticon anticon-plus-circle m-r-5"></i>Thêm mới</a>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tiêu Đề</th>
+                <th>Ảnh Tin Tức</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+<tr>
+    <td>@item.TieuDe</td>
+    <td>
+        <div class="d-flex align-items-center">
+            <img src="~/images/AnhGioiThieu/@item.Anh" width="60px">
+        </div>
+    </td>
+
+    <td class="text-right">
+        <a asp-area="Admin" asp-controller="Tintucs" asp-action="Edit" asp-route-id="@item.IdGt" class="btn btn-info m-r-5">Sửa</a>
+        <a asp-area="Admin" asp-controller="Tintucs" asp-action="Details" asp-route-id="@item.IdGt" class="btn btn-warning m-r-5">Chi tiết</a>
+        <a asp-area="Admin" asp-controller="Tintucs" asp-action="Delete" asp-route-id="@item.IdGt" class="btn btn-danger m-r-5">Xóa</a>
+    </td>
+</tr>
+}
+            }
+
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TraSuaWeb.Models.Account>
+
+@{
+    ViewData["Title"] = "Danh sách tài khoản quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Danh sách tải khoản</span>
+        </nav>
+    </div>
+</div>
+<div class="col-lg-12 text-right">
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Accounts" asp-action="Create"> <i class="anticon anticon-plus-circle m-r-5"></i>Thêm mới</a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Họ và tên</th>
+                        <th>Email</th>
+                        <th>Mật khẩu</th>
+                        <th>Số điện thoại</th>
+                        <th>Quyền truy cập</th>
+                        <th>Tình trạng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                    <tr role="row" class="odd">
+                        <td>
+                            @item.AccountId
+                        </td>
+                        <td class="sorting_1">
+                            <h6 class="m-b-0 m-l-10">@item.FullName</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0 m-l-10">@item.Email</h6>
+                        </td>
+                        <td>@item.Password</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Role.RoleName</td>
+                        <td>
+                            @if (item.Active)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>mở</div>
+                                </div> }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-danger badge-dot m-r-10"></div>
+                                    <div>khóa</div>
+                                </div>}
+
+                        </td>
+                        <td>
+                            <a asp-area="Admin" asp-controller="Accounts" asp-action="Edit" asp-route-id="@item.AccountId" class="btn btn-info m-r-5">Sửa</a>
+                            <a asp-area="Admin" asp-controller="Accounts" asp-action="Details" asp-route-id="@item.AccountId" class="btn btn-warning m-r-5">Chi tiết</a>
+                            <a asp-area="Admin" asp-controller="Accounts" asp-action="Delete" asp-route-id="@item.AccountId" class="btn btn-danger m-r-5">Xóa</a>
+                        </td>
+                    </tr>
+}
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
